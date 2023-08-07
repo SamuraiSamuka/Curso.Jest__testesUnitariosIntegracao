@@ -1,4 +1,5 @@
-import { somaHorasExtras, calculaDescontos } from '../index.js';
+/* eslint-disable no-undef */
+import { somaHorasExtras, calculaDescontos } from '../index';
 
 describe('Testes do cálculos de folha', () => {
   it('Deve retornar a soma das horas extras', () => {

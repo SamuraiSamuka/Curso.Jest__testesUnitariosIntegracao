@@ -1,4 +1,5 @@
-import Carrinho from './carrinho.js';
+/* eslint-disable no-console */
+import Carrinho from './carrinho';
 import Item from './item';
 
 const carrinho = new Carrinho();
