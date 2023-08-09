@@ -2,7 +2,7 @@
 import Carrinho from '../carrinho';
 import Item from '../item';
 
-describe('Testesdo carrinho', () => {
+describe('Testes do carrinho', () => {
   it('Deve inicializar vazio', () => {
     const carrinho = new Carrinho();
 
@@ -29,5 +29,38 @@ describe('Testesdo carrinho', () => {
     const carrinho = new Carrinho();
 
     expect(carrinho).toHaveProperty('total');
+  });
+
+  it('Deve lançar erro ao finalizar compra com carrinho vazio', () => {
+    function englobaErroCarrinho() {
+      const carrinho = new Carrinho();
+      carrinho.finalizaCompra();
+    }
+
+    expect(englobaErroCarrinho).toThrowError('Carrinho de compras vazio');
+  });
+
+  it('Deve adicionar o frete', () => {
+    const carrinho = new Carrinho();
+    carrinho.adicionaFrete(10);
+
+    expect(carrinho.frete).toBe(10);
+  });
+
+  it('Deve finalizar as compras', () => {
+    const item = new Item('Banana', 2, 5);
+    const item2 = new Item('Mel', 1, 4);
+
+    const carrinho = new Carrinho();
+    carrinho.adiciona(item);
+    carrinho.adiciona(item2);
+    carrinho.adicionaFrete(10);
+
+    const resultado = carrinho.finalizaCompra();
+    expect(resultado).toBe({
+      subtotal: 14,
+      frete: 10,
+      total: 24,
+    });
   });
 });
